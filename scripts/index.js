@@ -4,7 +4,7 @@ class Keyboard {
   constructor() {
     this.shift = false;
     this.caps = false;
-    this.ctrl = false
+    this.ctrl = false;
     this.language = 'en';
     this.elements = {
       textarea: null,
@@ -16,6 +16,12 @@ class Keyboard {
     this.elements.keyboardContainer = document.createElement('div');
     this.elements.keyboardContainer.classList.add('base');
     this.elements.textarea = document.createElement('textarea');
+    this.about = document.createElement('div');
+    this.system = document.createElement('span');
+    this.system.innerText = 'Made for Windows';
+    this.languageInstructions = document.createElement('span');
+    this.languageInstructions.innerText = 'Press Ctrl + Alt to Switch the Language';
+    this.about.classList.add('about');
 
     document.addEventListener('keydown', this.handleEvent);
     document.addEventListener('keyup', this.handleEvent);
@@ -25,7 +31,11 @@ class Keyboard {
 
   mouseEvent = (e) => {
     e.stopPropagation();
-    // const { code, type } = e;
+    if(e.target.closest('.key')){
+      const mouseButton = e.target.closest('.key')
+      let code = mouseButton.marker
+      this.handleEvent({ code, type: e.type })
+    }
   };
 
   handleEvent = (e) => {
@@ -37,12 +47,14 @@ class Keyboard {
     if (!keyPressed) {
       return;
     }
-    if (type === 'keydown') {
+    if (type === 'keydown' || type === 'mousedown') {
       keyPressed.classList.add('active');
       let nextText;
       const cursorStart = this.elements.textarea.selectionStart;
       const cursorEnd = this.elements.textarea.selectionEnd;
-      e.preventDefault();
+      if(type === 'keydown') {
+        e.preventDefault();
+      }
       let input = keyPressed.textContent;
       if (input === 'Shift') {
         if (!this.shift) {
@@ -108,7 +120,7 @@ class Keyboard {
       }
     }
 
-    if (type === 'keyup') {
+    if (type === 'keyup' || type === 'mouseup') {
       keyPressed.classList.remove('active');
       if (keyPressed.textContent === 'Ctrl') {
         this.ctrl = false;
@@ -148,7 +160,11 @@ class Keyboard {
     const keyboardFragment = document.createDocumentFragment();
     let pickLayout;
     this.getLanguage();
-    this.language === 'ru' ? pickLayout = languages.ru : pickLayout = languages.en;
+    if (this.language === 'ru') {
+      pickLayout = languages.ru;
+    } else {
+      pickLayout = languages.en;
+    }
     pickLayout.forEach((el) => {
       this.key = document.createElement('div');
       this.key.textContent = el.value;
@@ -229,6 +245,9 @@ class Keyboard {
     document.body.appendChild(this.elements.textarea);
     document.body.appendChild(this.elements.keyboardContainer);
     this.elements.keyboardContainer.appendChild(this.createKeys());
+    this.about.appendChild(this.languageInstructions);
+    this.about.appendChild(this.system);
+    document.body.appendChild(this.about);
     // this.elements.keys = this.elements.keyboardContainer.querySelectorAll('.key');
   }
 
@@ -244,7 +263,7 @@ class Keyboard {
       pickLayout.forEach((letter) => {
         if (letter.code === keyCode) {
           const output = letter.value;
-          const shifted = letter.shift
+          const shifted = letter.shift;
 
           if ((this.caps && !this.shift) || (!this.caps && this.shift)) {
             if (!output.match(/[^a-zа-яё]/g)) {
@@ -260,8 +279,8 @@ class Keyboard {
               key.innerText = output;
             }
           }
-          if(this.shift){
-            if(shifted !== null){
+          if (this.shift) {
+            if (shifted !== null) {
               key.innerText = shifted;
             }
           }
