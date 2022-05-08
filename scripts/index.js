@@ -1,6 +1,6 @@
 import languages from '../layouts/languages.js';
 
-class Keyboard {
+export default class Keyboard {
   constructor() {
     this.shift = false;
     this.caps = false;
@@ -297,6 +297,6 @@ class Keyboard {
   }
 }
 
-const kb = new Keyboard();
-kb.init();
-kb.output();
+const keyboard = new Keyboard();
+keyboard.init();
+keyboard.output();
