@@ -92,7 +92,11 @@ class Keyboard {
       if (input === 'Backspace') {
         input = '';
         if (previousText) {
-          previousText = this.elements.textarea.value.slice(0, cursorStart - 1);
+          if (cursorStart === cursorEnd) {
+            previousText = this.elements.textarea.value.slice(0, cursorStart - 1);
+          } else {
+            previousText = this.elements.textarea.value.slice(0, cursorStart);
+          }
         }
       }
 
@@ -116,7 +120,11 @@ class Keyboard {
         this.elements.textarea.setSelectionRange(0, 0);
       }
       if (nextText && keyPressed.marker === 'Backspace' && previousText.length) {
-        this.elements.textarea.setSelectionRange(cursorStart - 1, cursorStart - 1);
+        if (cursorStart === cursorEnd) {
+          this.elements.textarea.setSelectionRange(cursorStart - 1, cursorStart - 1);
+        } else {
+          this.elements.textarea.setSelectionRange(cursorStart, cursorStart);
+        }
       }
     }
 
@@ -248,7 +256,6 @@ class Keyboard {
     this.about.appendChild(this.languageInstructions);
     this.about.appendChild(this.system);
     document.body.appendChild(this.about);
-    // this.elements.keys = this.elements.keyboardContainer.querySelectorAll('.key');
   }
 
   reload() {
