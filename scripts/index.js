@@ -31,10 +31,10 @@ class Keyboard {
 
   mouseEvent = (e) => {
     e.stopPropagation();
-    if(e.target.closest('.key')){
-      const mouseButton = e.target.closest('.key')
-      let code = mouseButton.marker
-      this.handleEvent({ code, type: e.type })
+    if (e.target.closest('.key')) {
+      const mouseButton = e.target.closest('.key');
+      const code = mouseButton.marker;
+      this.handleEvent({ code, type: e.type });
     }
   };
 
@@ -52,7 +52,7 @@ class Keyboard {
       let nextText;
       const cursorStart = this.elements.textarea.selectionStart;
       const cursorEnd = this.elements.textarea.selectionEnd;
-      if(type === 'keydown') {
+      if (type === 'keydown') {
         e.preventDefault();
       }
       let input = keyPressed.textContent;
