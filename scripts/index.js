@@ -264,24 +264,24 @@ class Keyboard {
         if (letter.code === keyCode) {
           const output = letter.value;
           const shifted = letter.shift;
-
+          const letterPressed = key;
           if ((this.caps && !this.shift) || (!this.caps && this.shift)) {
             if (!output.match(/[^a-zа-яё]/g)) {
-              key.innerText = output.toUpperCase();
+              letterPressed.innerText = output.toUpperCase();
             } else {
-              key.innerText = output;
+              letterPressed.innerText = output;
             }
           }
           if ((!this.caps && !this.shift) || (this.caps && this.shift)) {
             if (!output.match(/[^a-zа-яё]/g)) {
-              key.innerText = output.toLowerCase();
+              letterPressed.innerText = output.toLowerCase();
             } else {
-              key.innerText = output;
+              letterPressed.innerText = output;
             }
           }
           if (this.shift) {
             if (shifted !== null) {
-              key.innerText = shifted;
+              letterPressed.innerText = shifted;
             }
           }
         }
