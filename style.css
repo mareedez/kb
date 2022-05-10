@@ -1,0 +1,165 @@
+@font-face {
+    font-family: 'Corner One';
+    src: url('fonts/CornerOne-Regular.woff2') format('woff2');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Corner One', sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-color: #19144a;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 50px;
+}
+
+.base{
+    background: linear-gradient(120deg, #7FA26F, #8eb57c);
+    display: flex;
+    gap: 10px 8px;
+    padding: 22px;
+    border-radius: 30px;
+    max-width: 1104px;
+    min-width: 1104px;
+    flex-wrap: wrap;
+    border: 2px solid #99BC89;
+    box-shadow: 2px 8px 15px #0f0c2c;
+}
+
+.key {
+    font-weight: bold;
+    color: black;
+    user-select: none;
+    background-color: #e8f3ed;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    font-size: 17px;
+    box-shadow: 0 12px 15px #4f6444;
+    opacity: .8;
+}
+
+.key:active{
+    opacity: 1;
+    box-shadow: none;
+    border: 1px solid #8eb57c;
+}
+
+.active{
+    opacity: 1;
+    box-shadow: none;
+    border: 1px solid #8eb57c;
+}
+
+
+.size-macro{
+    width: 70px;
+    border-radius: 30px;
+    font-size: 14px;
+}
+
+.size-mini{
+    width: 91px;
+    border-radius: 30px;
+    font-size: 14px
+}
+
+.key__caps{
+    width: 108px;
+    border-radius: 40px;
+    font-size: 14px
+}
+
+.size-mediumSmall {
+    width: 121px;
+    border-radius: 30px;
+    font-size: 14px
+}
+
+.key__backspace{
+    width: 132px;
+    border-radius: 30px;
+    font-size: 14px
+}
+
+.size-medium{
+    width: 134px;
+    border-radius: 30px;
+    font-size: 14px
+}
+
+.leftShift__key{
+    width: 168px;
+    border-radius: 30px;
+    font-size: 14px
+}
+
+.space__key{
+    width: 350px;
+    border-radius: 30px;
+}
+
+.rightSide{
+    font-size: 14px;
+}
+
+.green{
+    background-color: #ecffbf;
+}
+
+.turquoise{
+    background-color:  #c1ffe3;
+}
+
+.margin-small{
+    margin-right: 10px
+}
+
+.margin-medium{
+    margin-right: 70px
+}
+
+.margin-large{
+    margin-right: 165px
+}
+
+textarea{
+    border-radius: 30px;
+    width: 600px;
+    height: 300px;
+    background-color: midnightblue;
+    border: 1px solid #14103b;
+    padding: 35px 30px;
+    color: #ecffbf;
+    font-size: 20px;
+    outline: none;
+    resize: none;
+    overflow: auto;
+}
+
+.caps-on{
+    box-shadow: 0 0 0 #edffbf;
+    background-color: #4E6345;
+    color: #7FA26F;
+}
+
+.about{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: cornflowerblue;
+    font-size: 14px;
+    line-height: 22px;
+}
