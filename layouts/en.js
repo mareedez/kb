@@ -97,7 +97,7 @@ export default [
     {
         code: 'KeyW',
         value: 'w',
-        shift: null',
+        shift: null,
     },
     {
         code: 'KeyE',
